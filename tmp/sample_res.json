@@ -1,0 +1,25 @@
+{
+  "took": 1,
+  "timed_out": false,
+  "_shards": {"total": 1, "successful": 1, "skipped": 0, "failed": 0},
+  "hits": {
+    "total": {"value": 1, "relation": "eq"},
+    "max_score": 21.47428,
+    "hits": [
+      {
+        "_index": "imago",
+        "_id": "3koKZpQBcFpCmfdyJk32",
+        "_score": 21.47428,
+        "_source": {
+          "bildnummer": "52307614",
+          "datum": "2007-05-13T00:00:00.000Z",
+          "suchtext": "Big Sur (iblbom00584401)",
+          "fotografen": "imagebroker",
+          "hoehe": "2592",
+          "breite": "3872",
+          "db": "stock"
+        }
+      }
+    ]
+  }
+}
