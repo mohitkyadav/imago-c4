@@ -11,10 +11,7 @@ flask --app server run
 ### Search API
 ```
 GET /search?query=<query>
-GET /search?query=<query>&page=<page>
-GET /search?query=<query>&page=<page>&limit=<limit>
-GET /search?query=<query>&page=<page>&limit=<limit>&sort=<sort>
-GET /search?query=<query>&page=<page>&limit=<limit>&sort=<sort>&order=<order>
+GET /search?query=<query>&size=<size>
 ```
 
 ### Thought Process

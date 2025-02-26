@@ -6,7 +6,8 @@
 
 ### The basic solution
 1. Add search endpoint, that returns the search results.
-2. Add pagination to the search results.
+2. Add page size to the search results. So the response time can be lowered if there are too many results.
+3. 
 
 ### Handling errors and validations
 > [!NOTE]  

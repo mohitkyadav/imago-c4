@@ -4,18 +4,20 @@ from flask import Flask, request, jsonify
 from elasticsearch import Elasticsearch
 from dotenv import load_dotenv
 
+from app.parsers import parse_params_to_es_body, parse_es_result_to_json
 from app.validations import validate_query_text
 
 load_dotenv()
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/healthcheck", methods=['GET'])
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return jsonify({'message': 'Hello, World!'})
 
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('q')
+    size = request.args.get('size', 10)
     
     error = validate_query_text(query)
 
@@ -28,19 +30,11 @@ def search():
         verify_certs=False
     )
     
-    body = {
-        "query": {
-            "match": {
-                "suchtext": query
-            },
-        },
-    }
+    body = parse_params_to_es_body(query, size)
 
     try:
         results = es_client.search(index='imago', body=body)
-        print("#####")
-        print(results['hits']['total'])
-        return jsonify(results['hits']['hits'])
+        return parse_es_result_to_json(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
