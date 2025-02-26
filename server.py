@@ -17,8 +17,9 @@ def hello_world():
 @app.route('/search', methods=['GET'])
 def search():
     query = request.args.get('q')
-    size = request.args.get('size', 10)
-    
+    size = request.args.get('size', default=10, type=int)
+    page = request.args.get('page', default=1, type=int)
+
     error = validate_query_text(query)
 
     if error:
@@ -30,11 +31,11 @@ def search():
         verify_certs=False
     )
     
-    body = parse_params_to_es_body(query, size)
+    body = parse_params_to_es_body(query, size, page)
 
     try:
         results = es_client.search(index='imago', body=body)
-        return parse_es_result_to_json(results)
+        return parse_es_result_to_json(results, page)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
