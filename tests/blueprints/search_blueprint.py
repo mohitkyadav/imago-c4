@@ -15,7 +15,7 @@ class TestSearchEndpoint(unittest.TestCase):
         'ELASTIC_PASSWORD': 'mock-password'
     })
     @patch('elasticsearch.Elasticsearch.search')
-    def test_search_connection_error(self, mock_es):
+    def test_search_bad_request(self, mock_es):
         response = self.app.get('/search')
 
         self.assertEqual(response.status_code, 400)
