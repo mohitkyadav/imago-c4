@@ -43,6 +43,9 @@ And we can use this data to further optimize the search query.
     - We can cache the search query and the results for a specific time.
     - We can cache the search query and the results for a specific location if we have access to it.
 
-## Things learnt along the way
+## Things learnt along the way and future improvements
 1. Dynamic mapping in Elasticsearch.
 2. Refreshed my knowledge of Flask, testing, python and Elasticsearch.
+3. We can add importance to the search fields, so the search results can be more relevant.
+4. We can add ranges `{"range": {"hoehe": {"gte": 2000}}}`, to further filter images based on their target device width.
+5. We can do bool query to combine multiple match queries for different fields.
