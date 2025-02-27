@@ -2,14 +2,16 @@ import os
 
 from flask import request, jsonify, Blueprint
 from elasticsearch import Elasticsearch
-import logging
 
+from app.analytics.decorators import log_execution_time
+from app.analytics.logger import LOG
 from app.utils.parsers import parse_params_to_es_body, parse_es_result_to_json
 from app.utils.validations import validate_query_text
 
 search_blueprint = Blueprint('search_blueprint', __name__)
 
 @search_blueprint.route("/search", methods=['GET'])
+@log_execution_time("Search operation")
 def search():
     query = request.args.get('q')
     size = request.args.get('size', default=10, type=int)
@@ -37,5 +39,5 @@ def search():
     except ConnectionError as e:
         return jsonify({'error': 'Connection error to Elasticsearch'}), 500
     except Exception as e:
-        logging.error(f"Error processing search: {e}")
+        LOG.error(f"Error processing search: {e}")
         return jsonify({'error': str(e)}), 500
