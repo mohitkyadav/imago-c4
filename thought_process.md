@@ -7,7 +7,10 @@
 ### The basic solution
 1. Add search endpoint, that returns the search results.
 2. Add page size to the search results. So the response time can be lowered if there are too many results.
-3. 
+
+### More filters and sorting
+1. Add filters, `filter_fotografen` and `filter_datum`.
+2. Add sorting, `sort`.
 
 ### Handling errors and validations
 > [!NOTE]  

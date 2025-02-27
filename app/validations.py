@@ -1,5 +1,4 @@
 def validate_query_text(query):
-    print(len(query))
     if not query:
         return {'error': 'Search query is required'}, 400
 

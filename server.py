@@ -19,6 +19,9 @@ def search():
     query = request.args.get('q')
     size = request.args.get('size', default=10, type=int)
     page = request.args.get('page', default=1, type=int)
+    filter_fotografen = request.args.get('filter_fotografen')
+    filter_datum = request.args.get('filter_datum')
+    sort = request.args.get('sort')
 
     error = validate_query_text(query)
 
@@ -31,7 +34,7 @@ def search():
         verify_certs=False
     )
     
-    body = parse_params_to_es_body(query, size, page)
+    body = parse_params_to_es_body(query, size, page, filter_fotografen, filter_datum, sort)
 
     try:
         results = es_client.search(index='imago', body=body)
