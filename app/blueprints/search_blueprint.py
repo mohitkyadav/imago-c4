@@ -55,7 +55,7 @@ def search():
         return jsonify({'error': str(e)}), 500
 
 @search_blueprint.route("/search/stats", methods=['GET'])
-def get_most_common_queries():
+def get_search_stats():
     top_five_queries = [{'query': k, 'count': v} for k, v in sorted(query_frequencies.items(),
                                                                     key=lambda x: x[1], reverse=True)[:5]]
     return {
