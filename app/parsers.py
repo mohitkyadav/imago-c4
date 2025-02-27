@@ -3,8 +3,9 @@ from flask import jsonify
 def parse_params_to_es_body(query, size, page, filter_fotografen=None, filter_datum=None, sort=None):
     body = {
         "query": {
-            "match": {
-                "suchtext": query
+            "multi_match": {
+                "query": query,
+                "fields": ["suchtext", "fotografen"]
             }
         },
         "track_total_hits": True,
