@@ -20,7 +20,13 @@
 1. The search query must have a minimum of 3 characters.
 2. The search query must not exceed 100 characters.
 
-## Optimizing the solution with AI
+### Testing
+1. I wrote tests for the health and search endpoint.
+2. Used unittest for testing.
+3. Also wrote tests for utils.
+
+## Thoughts and learnings 
+### Optimizing the solution with AI
 We can use AI to predict the search query. For example if a user searches for the term
 "Boy with toy weapons by ZUMA Press Wire from 20th centuary for mobile width", the AI can generate the search query for us.
 In this case it would parse this and give us useful values for search and filter fields. In this case:
@@ -35,7 +41,12 @@ In this case it would parse this and give us useful values for search and filter
 ```
 And we can use this data to further optimize the search query.
 
-## Scaling the solution
+### Further optimizations
+1. We can add importance to the search fields, so the search results can be more relevant.
+2. We can add ranges `{"range": {"hoehe": {"gte": 2000}}}`, to further filter images based on their target device width.
+3. We can do bool query to combine multiple match queries for different fields.
+
+### Scaling the solution
 1. It can be horizontally scaled by creating more than 1 Elasticsearch clusters.
 2. The search query can be cached, so the response time can be lowered.
     - We can use Redis for caching.
@@ -43,9 +54,3 @@ And we can use this data to further optimize the search query.
     - We can cache the search query and the results for a specific time.
     - We can cache the search query and the results for a specific location if we have access to it.
 
-## Things learnt along the way and future improvements
-1. Dynamic mapping in Elasticsearch.
-2. Refreshed my knowledge of Flask, testing, python and Elasticsearch.
-3. We can add importance to the search fields, so the search results can be more relevant.
-4. We can add ranges `{"range": {"hoehe": {"gte": 2000}}}`, to further filter images based on their target device width.
-5. We can do bool query to combine multiple match queries for different fields.
