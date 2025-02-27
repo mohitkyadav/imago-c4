@@ -3,9 +3,12 @@ import os
 from flask import Flask, request, jsonify
 from elasticsearch import Elasticsearch
 from dotenv import load_dotenv
+import logging
 
 from app.parsers import parse_params_to_es_body, parse_es_result_to_json
 from app.validations import validate_query_text
+
+logging.basicConfig(level=logging.ERROR)
 
 load_dotenv()
 app = Flask(__name__)
@@ -39,8 +42,12 @@ def search():
     try:
         results = es_client.search(index='imago', body=body)
         return parse_es_result_to_json(results, page)
+    except ConnectionError as e:
+        return jsonify({'error': 'Connection error to Elasticsearch'}), 500
     except Exception as e:
+        logging.error(f"Error processing search: {e}")
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
