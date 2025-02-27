@@ -31,6 +31,9 @@ GET /search?query=<query>&filter_datum=2020-01-01 TO 2020-09-12
 # Sort By
 GET /search?query=<query>&sort=datum.desc
 GET /search?query=<query>&sort=fotografen.asc
+
+# Stats
+GET /search/stats
 ```
 
 ### Thought Process

@@ -20,6 +20,10 @@
 1. The search query must have a minimum of 3 characters.
 2. The search query must not exceed 100 characters.
 
+### Analytics
+1. Added search/stats endpoint to get the search statistics.
+2. We can see top 5 queries and total success/failure rates.
+
 ### Testing
 1. I wrote tests for the health and search endpoint.
 2. Used unittest for testing.
@@ -45,6 +49,7 @@ And we can use this data to further optimize the search query.
 1. We can add importance to the search fields, so the search results can be more relevant.
 2. We can add ranges `{"range": {"hoehe": {"gte": 2000}}}`, to further filter images based on their target device width.
 3. We can do bool query to combine multiple match queries for different fields.
+4. Stats can be extended to show more analytics. Like maximum number of results in a query, average response time etc.
 
 ### Scaling the solution
 1. It can be horizontally scaled by creating more than 1 Elasticsearch clusters.
