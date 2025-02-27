@@ -4,8 +4,8 @@ from flask import request, jsonify, Blueprint
 from elasticsearch import Elasticsearch
 import logging
 
-from app.parsers import parse_params_to_es_body, parse_es_result_to_json
-from app.validations import validate_query_text
+from app.utils.parsers import parse_params_to_es_body, parse_es_result_to_json
+from app.utils.validations import validate_query_text
 
 search_blueprint = Blueprint('search_blueprint', __name__)
 
